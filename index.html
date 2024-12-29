@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stream Kamera</title>
+</head>
+<body>
+  <h1>Kamera Anda</h1>
+  <video id="video" autoplay playsinline style="width: 100%; max-width: 600px;"></video>
+  <script>
+    async function startCamera() {
+      const video = document.getElementById('video');
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        video.srcObject = stream;
+      } catch (error) {
+        console.error("Gagal mengakses kamera:", error);
+      }
+    }
+
+    // Mulai kamera saat halaman dimuat
+    window.onload = startCamera;
+  </script>
+</body>
+</html>
